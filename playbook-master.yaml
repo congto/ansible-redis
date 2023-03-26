@@ -21,7 +21,7 @@
     redis_port: "6379"
     sentinel_port: "26379"
     redis_bind_loop: 127.0.0.1
-    redis_master_ip: '{{ansible_default_ipv4.address}}'
+    redis_master_ip: '{{ipaddress_master}}'
   
   tasks:
 
