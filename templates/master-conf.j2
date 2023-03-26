@@ -5,7 +5,7 @@ logfile {{ redis_log_dir }}/redis.log
 maxclients 40000
 supervised systemd
 daemonize yes
-
+# replicaof {{ ipaddress_master }} 6379
 masterauth "Passw0rd!"
 requirepass "Passw0rd!"
 
