@@ -113,7 +113,7 @@
         daemon_reload: true
         state: started
 
-    - name: Copy Redis template
+    - name: Copy sentinel template
       template:
         src: "sentinel-master.j2"
         dest: "{{ redis_conf_dir }}/sentinel.conf"
