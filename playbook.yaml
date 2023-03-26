@@ -1,6 +1,6 @@
 ---
 - name: Redis Cluster Install
-  hosts: redis
+  hosts: all
   become: yes
   become_user: root
   #gather_facts: no
@@ -21,7 +21,7 @@
     redis_port: "6379"
     sentinel_port: "26379"
     redis_bind_loop: 127.0.0.1
-    redis_master_ip: 10.0.11.167
+    redis_master_ip: '{{ansible_default_ipv4.address}}'
   
   tasks:
 
@@ -92,13 +92,13 @@
       become: true
       when: role_redis == 'master'
 
-    - name: Copy Redis template
-      template:
-        src: "slave-conf.j2"
-        dest: "{{ redis_conf_dir }}/redis.conf"
-        mode: 0644
-      become: true
-      when: role_redis == 'slave'       
+    # - name: Copy Redis template
+      # template:
+        # src: "slave-conf.j2"
+        # dest: "{{ redis_conf_dir }}/redis.conf"
+        # mode: 0644
+      # become: true
+      # when: role_redis == 'slave'       
        
     - name: Setup Redis Systemd
       template:
