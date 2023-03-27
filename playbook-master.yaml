@@ -107,7 +107,7 @@
         mode: 0644
       become: true
 
-    - name: Make sure a service unit is running
+    - name: Make sure redis is running
       systemd:
         name: redis
         daemon_reload: true
@@ -126,4 +126,10 @@
         src: systemd-sentinel.j2
         dest: "/etc/systemd/system/redis-sentinel.service"
         mode: 0644
-      become: true        
+      become: true
+
+    - name: Make sure redis-sentinel is running
+      systemd:
+        name: redis-sentinel
+        daemon_reload: true
+        state: started      
